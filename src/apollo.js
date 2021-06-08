@@ -35,7 +35,7 @@ export const disableDarkMode = () => {
 };
 
 const httpLink = createHttpLink({
-    uri: "https://ksj-nomadcoffee-backend.herokuapp.com/graphql",
+    uri: "http://localhost:4000/graphql",
 });
 //send token to http headers
 const authLink = setContext((_, { headers }) => {

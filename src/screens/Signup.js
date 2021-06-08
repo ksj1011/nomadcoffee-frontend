@@ -14,25 +14,20 @@ import { useHistory } from "react-router";
 import { routes } from "../routes";
 import {Link} from "react-router-dom";
 import LinkBox from "../components/auth/LinkBox";
+import PageMode from "../components/PageMode";
 
 const CREATE_ACCOUNT_MUTATION = gql`
     mutation createAccount(
         $username: String!
         $email: String!
         $name: String!
-        $location: String!
         $password: String!
-        $avatarURL: String
-        $githubUsername: String
     ) {
         createAccount(
             username: $username
-            password: $password
             email: $email
             name: $name
-            location: $location
-            avatarURL: $avatarURL
-            githubUsername: $githubUsername
+            password: $password
         ) {
             ok
             error
@@ -100,11 +95,7 @@ function SignUp() {
             </Header>
             <FormBox>
                 <form onSubmit={handleSubmit(onSubmitValid)}>
-                    <FormError message={errors?.username?.message} />
-                    <FormError message={errors?.password?.message} />
-                    <FormError message={errors?.name?.message} />
-                    <FormError message={errors?.location?.message} />
-                    <FormError message={errors?.result?.message} />
+
                     <Input
                         {...register("username", {
                             required: "Username is required",
@@ -143,32 +134,21 @@ function SignUp() {
                         placeholder="Name"
                         hasError={Boolean(errors?.name?.message)}
                     />
-                    <Input
-                        {...register("location", {
-                            required: "Location is required",
-                        })}
-                        onFocus={clearLoginError}
-                        type="text"
-                        placeholder="Location"
-                        hasError={Boolean(errors?.location?.message)}
-                    />
-                    <Input
-                        {...register("githubUsername")}
-                        onFocus={clearLoginError}
-                        type="text"
-                        placeholder="Github Username"
-                        hasError={Boolean(errors?.githubUsername?.message)}
-                    />
+                    <FormError message={errors?.username?.message} />
+                    <FormError message={errors?.password?.message} />
+                    <FormError message={errors?.name?.message} />
+                    <FormError message={errors?.result?.message} />
                     <Button type="submit" disabled={!formState.isValid || loading}>
                         {loading ? "Loading..." : "Sign Up"}
                     </Button>
                 </form>
-                <LinkBox
-                    text="계정이 있으신가요?"
-                    link={routes.home}
-                    linkText="로그인"
-                />
             </FormBox>
+            <LinkBox
+              text="계정이 있으신가요?"
+              link={routes.home}
+              linkText="로그인"
+            />
+            <PageMode/>
         </Wrapper>
     );
 }

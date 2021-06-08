@@ -10,8 +10,4 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme.mainColor};
   cursor: ${(props) => (props.disabled ? null : "pointer")};
   opacity: ${(props) => (props.disabled ? 0.2 : 1)};
-  &:hover {
-    background-color: ${(props) =>
-    props.disabled ? props.theme.mainColor : props.theme.bgColor};
-  }
 `;

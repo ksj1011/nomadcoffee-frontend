@@ -8,6 +8,7 @@ const SFormError = styled.p`
   text-align: center;
   color: #fff;
   background-color: #ff6060;
+  margin-bottom: 15px;
 `;
 
 function FormError({ message }) {
