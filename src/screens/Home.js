@@ -1,13 +1,16 @@
-import {isDarkModeVar, isLoggedInVar} from "../apollo";
+import { useHistory } from "react-router";
+import { logUserOut } from "../apollo";
+import PageTitle from "../components/PageTitle";
 
-function Home(){
-  return (
-    <div>
-      <h1>Home</h1>
-      <button onClick={()=> isLoggedInVar(false)}>Log out now!</button><br/>
-      <button onClick={()=> isDarkModeVar(true)}>to dark</button>
-      <button onClick={()=> isDarkModeVar(false)}>to light</button>
-    </div>
-  )
+function Home() {
+    const history = useHistory();
+    return (
+        <div>
+            <PageTitle title="Home | Nomad Coffee" />
+            <h1>HOME</h1>
+            <button onClick={() => logUserOut(history)}>Log out</button>
+        </div>
+    );
 }
+
 export default Home;
