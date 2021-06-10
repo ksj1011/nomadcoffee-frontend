@@ -5,6 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { client, darkModeVar, isLoggedInVar } from "./apollo";
 import { routes } from "./routes";
 import Home from "./screens/Home";
+import Add from "./screens/Add";
+import Shop from "./screens/Shop";
 import Login from "./screens/Login";
 import NotFound from "./screens/NotFound";
 import SignUp from "./screens/Signup";
@@ -25,6 +27,12 @@ function App() {
                             </Route>
                             <Route path={routes.signup} exact>
                                 <SignUp />
+                            </Route>
+                            <Route path={routes.add} exact>
+                                <Add />
+                            </Route>
+                            <Route path={'/shop/:id'} exact>
+                                <Shop />
                             </Route>
                             <Route>
                                 <NotFound />
